@@ -17,10 +17,14 @@ public class ScenesManager : MonoBehaviour
 
     public static ScenesManager GetInstance()
     {
-        GameObject go = new GameObject("@ScenesManager");
-        Instance = go.AddComponent<ScenesManager>();
+        if (Instance == null)
+        {
+            GameObject go = new GameObject("@ScenesManager");
+            Instance = go.AddComponent<ScenesManager>();
 
-        DontDestroyOnLoad(go);
+            DontDestroyOnLoad(go);
+        }
+
 
         return Instance;
     }

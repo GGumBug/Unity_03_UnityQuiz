@@ -9,14 +9,17 @@ public class MenuManager : MonoBehaviour
 
     public static MenuManager GetInstance()
     {
-        GameObject go = new GameObject("@MenuManager");
-        Instance = go.AddComponent<MenuManager>();
+        if (Instance == null)
+        {
+            GameObject go = new GameObject("@MenuManager");
+            Instance = go.AddComponent<MenuManager>();
 
-        DontDestroyOnLoad(go);
+            DontDestroyOnLoad(go);
+        }
 
         return Instance;
     }
     #endregion
 
-    
+
 }

@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region SingleTone
+    public static MainManager Instance;
 
-    // Update is called once per frame
-    void Update()
+    public static MainManager GetInstance()
     {
-        
+        if (Instance == null)
+        {
+            GameObject go = new GameObject("@MainManager");
+            Instance = go.AddComponent<MainManager>();
+
+            DontDestroyOnLoad(go);
+        }
+
+        return Instance;
     }
+    #endregion
+
+    public static QuizType[] typeList =
+    {
+        new QuizType("넌센스"),
+        new QuizType("스피드 인물퀴즈")
+    };
+    
+
 }
