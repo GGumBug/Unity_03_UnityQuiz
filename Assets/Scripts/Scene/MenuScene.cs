@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class MenuScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Start() {
+        UIManager.GetInstance().SetEventSystem();
+        UIManager.GetInstance().OpenUI("UIMenu");
     }
 }

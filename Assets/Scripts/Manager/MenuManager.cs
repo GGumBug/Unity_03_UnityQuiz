@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region SingleTone
+    public static MenuManager Instance;
 
-    // Update is called once per frame
-    void Update()
+    public static MenuManager GetInstance()
     {
-        
+        GameObject go = new GameObject("@MenuManager");
+        Instance = go.AddComponent<MenuManager>();
+
+        DontDestroyOnLoad(go);
+
+        return Instance;
     }
+    #endregion
+
+    
 }
