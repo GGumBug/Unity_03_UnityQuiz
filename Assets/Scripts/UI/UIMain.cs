@@ -23,15 +23,17 @@ public class UIMain : MonoBehaviour
             GameObject go = (GameObject)Instantiate(obj, typeButtonList);
             quizType = go.GetComponent<UIMainButton>();
             quizType.SetReference();
-            quizType.btnQuizType.onClick.AddListener(OnQuizSceneStart);
+            int a = i;
+            quizType.btnQuizType.onClick.AddListener(() => {OnQuizSceneStart(a);});
 
             quizType.txtQuizType.text = MainManager.typeList[i].type;
         }
 
     }
 
-    public void OnQuizSceneStart()
+    public void OnQuizSceneStart(int num)
     {
+        MainManager.GetInstance().quizNumber = num;
         ScenesManager.GetInstance().ChangeScene(Scene.Quiz);
     }
 }

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class QuizScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Start() {
+        QuizManager.GetInstance();
+        LoadQuizType();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadQuizType()
     {
-        
+        int quizType = MainManager.GetInstance().quizNumber;
+        UIManager.GetInstance().SetEventSystem();
+        UIManager.GetInstance().OpenUI(MainManager.typeList[quizType].prepabName);
     }
 }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TypeBtnList
+  - ExampleList
+  - QuizScene
+  - UIAnswer
   layers:
   - Default
   - TransparentFX

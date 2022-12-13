@@ -5,9 +5,11 @@ using UnityEngine;
 public class QuizType
 {
     public string type;
+    public string prepabName;
 
-    public QuizType(string type)
+    public QuizType(string type, string prepabName)
     {
         this.type = type;
+        this.prepabName = prepabName;
     }
 }

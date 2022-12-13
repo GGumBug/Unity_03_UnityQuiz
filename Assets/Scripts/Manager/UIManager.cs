@@ -23,7 +23,49 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    public GameObject SetEventSystem()
+    Dictionary<string, GameObject> uiList = new Dictionary<string, GameObject>();
+
+    #region UIControl
+    public void OpenUI(string prefabName)
+    {
+        if (uiList.ContainsKey(prefabName) == false)
+        {
+            Object obj = Resources.Load("UI/" + prefabName);
+            GameObject go = (GameObject)Instantiate(obj);
+            uiList.Add(prefabName, go);
+        }
+        else
+        {
+            uiList[prefabName].SetActive(true);
+        }
+    }
+
+    public void CloseUI(string prefabName)
+    {
+        if (uiList.ContainsKey(prefabName) == true)
+        {
+            uiList[prefabName].SetActive(false);    
+        }
+        
+    }
+
+    public GameObject GetUI(string prefabName)
+    {
+        if (uiList.ContainsKey(prefabName))
+        {
+            return uiList[prefabName];
+        }
+
+        return null;
+    }
+
+    public void ClearList()
+    {
+        uiList.Clear();
+    }
+    #endregion
+
+        public GameObject SetEventSystem()
     {
         if (FindObjectOfType<EventSystem>() == false)
         {
@@ -38,13 +80,5 @@ public class UIManager : MonoBehaviour
             return null;
         }
 
-    }
-
-    public GameObject OpenUI(string PrefabName)
-    {
-        Object obj = Resources.Load("UI/" + PrefabName);
-        GameObject go = (GameObject)Instantiate(obj);
-
-        return go;
     }
 }

@@ -33,6 +33,8 @@ public class ScenesManager : MonoBehaviour
 
     public void ChangeScene(Scene scene)
     {
+        UIManager.GetInstance().ClearList();
+
         SceneManager.LoadScene(scene.ToString());
     }
 }

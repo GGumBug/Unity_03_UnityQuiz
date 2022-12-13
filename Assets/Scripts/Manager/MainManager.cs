@@ -21,11 +21,13 @@ public class MainManager : MonoBehaviour
     }
     #endregion
 
+    public int quizNumber;
     public static QuizType[] typeList =
     {
-        new QuizType("넌센스"),
-        new QuizType("스피드 인물퀴즈")
+        new QuizType("수도 퀴즈", "UICapital"),
+        new QuizType("스피드 인물퀴즈", "UISpeedQuiz")
     };
-    
 
+    
+    
 }
