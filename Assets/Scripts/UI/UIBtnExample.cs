@@ -22,11 +22,18 @@ public class UIBtnExample : MonoBehaviour
     public void OnClickChoice(int answer)
     {
         int curQuizNumber = QuizManager.GetInstance().curQuizNumber;
-        if (answer == QuizManager.capitalQuizList[curQuizNumber].quizAnswer)
+        
+        if (QuizManager.GetInstance().matchingQuiz >= 9)
         {
+            QuizManager.GetInstance().matchingQuiz++;
+            Clear();
+        }
+        else if (answer == QuizManager.capitalQuizList[curQuizNumber].quizAnswer)
+        {
+            QuizManager.GetInstance().matchingQuiz++;
             Answer();
         }
-        else
+        else 
         {
             Wrong();
         }
@@ -51,7 +58,35 @@ public class UIBtnExample : MonoBehaviour
 
     public void Wrong()
     {
+        int quizType = MainManager.GetInstance().quizNumber;
+        UIManager.GetInstance().CloseUI(MainManager.typeList[quizType].prepabName);
 
+        UIManager.GetInstance().OpenUI("UIWrong");
+        UIWrong uiWrong = UIManager.GetInstance().GetUI("UIWrong").GetComponent<UIWrong>();
+        uiWrong.ConnectObject();
+        uiWrong.txtScore.text = $"맞춘문제 : {QuizManager.GetInstance().matchingQuiz} / 10";
+
+        uiWrong.btnReTry.onClick.AddListener(ReTry);
+    }
+
+    public void Clear()
+    {  
+        int quizType = MainManager.GetInstance().quizNumber;
+        UIManager.GetInstance().CloseUI(MainManager.typeList[quizType].prepabName);
+
+        UIManager.GetInstance().OpenUI("UIClear");
+        UIClear uiClear = UIManager.GetInstance().GetUI("UIClear").GetComponent<UIClear>();
+        uiClear.ConnectObject();
+        uiClear.btnReTry.onClick.AddListener(ReTry);
+
+    }
+
+    public void ReTry()
+    {
+        UIManager.GetInstance().CloseUI("UIWrong");
+        UIManager.GetInstance().CloseUI("UIClear");
+        QuizManager.GetInstance().ResetQuiz();
+        ScenesManager.GetInstance().ChangeScene(Scene.Main);
     }
 
 
