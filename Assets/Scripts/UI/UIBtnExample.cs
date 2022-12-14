@@ -14,7 +14,8 @@ public class UIBtnExample : MonoBehaviour
     {
         btnExample = GetComponent<Button>();
         txtNumber = GetComponentInChildren<TMP_Text>();
-        
+
+        btnExample.onClick.RemoveAllListeners();
         btnExample.onClick.AddListener(() => {OnClickChoice(idx);} );
         txtNumber.text = QuizManager.capitalQuizList[curQuizNumber].exampleList[idx];
     }
